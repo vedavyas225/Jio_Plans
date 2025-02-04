@@ -53,4 +53,5 @@ public class NormalUser {
     private String normalUserName;
     private String normalPlanType;
     private String address;
+    private String country;
 }
