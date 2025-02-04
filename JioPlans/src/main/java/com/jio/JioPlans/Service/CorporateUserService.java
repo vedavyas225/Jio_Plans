@@ -47,7 +47,4 @@ public class CorporateUserService {
             return false;
         }
     }
-
-
-
 }

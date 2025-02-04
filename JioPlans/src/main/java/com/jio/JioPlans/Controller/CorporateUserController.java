@@ -16,24 +16,28 @@ public class CorporateUserController {
     @Autowired
     public CorporateUserService cuService;
 
+    @GetMapping("/testing")
+    public String testingOutput(){
+        return "this is a dummy string";
+    }
 
-    @GetMapping("/")
-    public ResponseEntity<List<CorporateUser>> getAllCorporateUsers() {
+    @GetMapping("/getUsers")
+    public List<CorporateUser> getAllCorporateUsers() {
         return cuService.getAllCorporateUsers();
     }
 
     @PostMapping("/addUser")
-    public ResponseEntity<CorporateUser> saveCUser(@RequestBody CorporateUser cu){
-        return cuService.saveCUser(cu);
+    public CorporateUser saveCUser(@RequestBody CorporateUser cu){
+        return cuService.createCU(cu);
     }
 
     @PutMapping("/updateCUser/{cid}")
-    public ResponseEntity<Optional<CorporateUser>> updateCUser(@PathVariable long cid, @RequestBody CorporateUser updatedCU){
-        return cuService.updateCUser(cid, updatedCU);
+    public Optional<CorporateUser> updateCUser(@PathVariable long cid, @RequestBody CorporateUser updatedCU){
+        return cuService.updateCU(cid, updatedCU);
     }
 
     @DeleteMapping("/deleteCUser/{cid}")
-    public ResponseEntity<Boolean> deleteCUserById(@PathVariable long cid){
-        return cuService.deleteCUserById(cid);
+    public boolean deleteCUserById(@PathVariable long cid){
+        return cuService.deleteCU(cid);
     }
 }
