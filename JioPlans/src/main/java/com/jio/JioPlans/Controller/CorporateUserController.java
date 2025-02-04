@@ -18,7 +18,7 @@ public class CorporateUserController {
 
     @GetMapping("/testing")
     public String testingOutput(){
-        return "this is a dummy string";
+        return "this is a dummy str";
     }
 
     @GetMapping("/getUsers")
