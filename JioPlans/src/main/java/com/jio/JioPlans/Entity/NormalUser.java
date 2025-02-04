@@ -53,4 +53,5 @@ public class NormalUser {
     private String normalUserName;
     private String normalPlanType;
     private String normalUserLastName;
+    private String normalUserFirstName;
 }
