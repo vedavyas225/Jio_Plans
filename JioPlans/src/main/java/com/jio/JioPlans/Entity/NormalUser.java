@@ -52,7 +52,5 @@ public class NormalUser {
     private long normalRegisteredNumber;
     private String normalUserName;
     private String normalPlanType;
-    private String normalUserLastName;
-    private String normalUserFirstName;
-    private String normalUserEmail;
+
 }
