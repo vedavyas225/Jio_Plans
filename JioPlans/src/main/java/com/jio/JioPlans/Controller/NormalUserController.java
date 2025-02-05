@@ -25,10 +25,11 @@ public class NormalUserController {
         return normService.getAllNormalUsers();
     }
 
-    @PostMapping("addUser")
+    @PostMapping("/addUser")
     public NormalUser saveNormalUser(@RequestBody NormalUser user){
         return normService.createNormalUser(user);
     }
+
     @PutMapping("/updateUser/{nid}")
     public Optional<NormalUser> updateNormalUser(@RequestBody NormalUser user, @PathVariable long nid){
         return normService.updateNormalUser(nid, user);
