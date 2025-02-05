@@ -13,7 +13,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable) // Disable CSRF protection
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/corp/**").permitAll() // Allow unauthenticated access to /corp endpoints
+                        .requestMatchers("/corp/**","/normal/**","/plan/**").permitAll() // Allow unauthenticated access to /corp endpoints
                         .anyRequest().authenticated() // Secure all other endpoints
                 ); // Enable Basic Authentication (if needed)
         return http.build();
