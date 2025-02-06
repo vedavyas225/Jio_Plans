@@ -32,6 +32,7 @@ public class CorporateUserController {
         return cuService.createCU(cuDTO);
     }
 
+    //This is written by Uma
     @PutMapping("/updateCUser/{cid}")
     public Optional<CorporateUser> updateCUser(@PathVariable long cid, @RequestBody CUdto updatedCUdto){
         return cuService.updateCU(cid, updatedCUdto);
