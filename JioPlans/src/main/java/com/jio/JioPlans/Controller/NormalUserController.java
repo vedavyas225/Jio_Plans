@@ -1,5 +1,6 @@
 package com.jio.JioPlans.Controller;
 
+import com.jio.JioPlans.DTO.NUdto;
 import com.jio.JioPlans.Entity.NormalUser;
 import com.jio.JioPlans.Service.NormalUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,13 @@ public class NormalUserController {
     }
 
     @PostMapping("/addUser")
-    public NormalUser saveNormalUser(@RequestBody NormalUser user){
-        return normService.createNormalUser(user);
+    public NormalUser saveNormalUser(@RequestBody NUdto nUdto){
+        return normService.createNormalUser(nUdto);
     }
 
     @PutMapping("/updateUser/{nid}")
-    public Optional<NormalUser> updateNormalUser(@RequestBody NormalUser user, @PathVariable long nid){
-        return normService.updateNormalUser(nid, user);
+    public Optional<NormalUser> updateNormalUser(@RequestBody NUdto nUdto, @PathVariable long nid){
+        return normService.updateNormalUser(nid, nUdto);
     }
 
     @DeleteMapping("/deleteUser/{nid}")

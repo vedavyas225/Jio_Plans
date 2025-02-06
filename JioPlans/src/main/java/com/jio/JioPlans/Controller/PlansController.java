@@ -1,5 +1,6 @@
 package com.jio.JioPlans.Controller;
 
+import com.jio.JioPlans.DTO.PlansDTO;
 import com.jio.JioPlans.Entity.Plans;
 import com.jio.JioPlans.Service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,13 @@ public class PlansController {
     }
 
     @PostMapping("/addPlan")
-    public Plans savePlan(@RequestBody Plans plan){
-        return planService.createPlan(plan);
+    public Plans savePlan(@RequestBody PlansDTO plansDTO){
+        return planService.createPlan(plansDTO);
     }
 
     @PutMapping("/updatePlan/{pid}")
-    public Optional<Plans> updatePlan(@RequestBody Plans plan,@PathVariable Long pid){
-        return planService.updatePlan(pid,plan);
+    public Optional<Plans> updatePlan(@RequestBody PlansDTO plansDTO,@PathVariable Long pid){
+        return planService.updatePlan(pid, plansDTO);
     }
 
     @DeleteMapping("/deletePlan/{pid}")

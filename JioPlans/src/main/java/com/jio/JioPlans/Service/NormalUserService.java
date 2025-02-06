@@ -1,5 +1,6 @@
 package com.jio.JioPlans.Service;
 
+import com.jio.JioPlans.DTO.NUdto;
 import com.jio.JioPlans.Entity.NormalUser;
 import com.jio.JioPlans.Repository.NormalUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +20,20 @@ public class NormalUserService {
         return normalUserRepo.findAll();
     }
     //CREATE
-    public NormalUser createNormalUser(NormalUser normalUser) {
-        return normalUserRepo.save(normalUser);
+    public NormalUser createNormalUser(NUdto nUdto) {
+        NormalUser nu = new NormalUser();
+        nu.setNormalRegisteredNumber(nu.getNormalRegisteredNumber());
+        nu.setNormalPlanType(nu.getNormalPlanType());
+        nu.setNormalUserName(nUdto.getNormalUserName());
+        return normalUserRepo.save(nu);
     }
     //UPDATE
-    public Optional<NormalUser> updateNormalUser(Long nid,NormalUser normalUser) {
+    public Optional<NormalUser> updateNormalUser(Long nid,NUdto nUdto) {
         return normalUserRepo.findById(nid).map(
                 normalUser1 -> {
-                    normalUser1.setNormalUserName(normalUser.getNormalUserName());
-                    normalUser1.setNormalPlanType(normalUser.getNormalPlanType());
-                    normalUser1.setNormalRegisteredNumber(normalUser.getNormalRegisteredNumber());
+                    normalUser1.setNormalUserName(nUdto.getNormalUserName());
+                    normalUser1.setNormalPlanType(nUdto.getNormalPlanType());
+                    normalUser1.setNormalRegisteredNumber(nUdto.getNormalRegisteredNumber());
                     return normalUserRepo.save(normalUser1);
                 }
         );
