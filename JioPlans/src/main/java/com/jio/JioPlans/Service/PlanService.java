@@ -1,8 +1,8 @@
 package com.jio.JioPlans.Service;
 
+import com.jio.JioPlans.DTO.PlansDTO;
 import com.jio.JioPlans.Entity.Plans;
 import com.jio.JioPlans.Repository.PlansRepo;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,17 +20,22 @@ public class PlanService {
         return plansRepo.findAll();
     }
     //CREATE
-    public Plans createPlan(Plans plan) {
-        return plansRepo.save(plan);
+    public Plans createPlan(PlansDTO plansDTO) {
+        Plans plans = new Plans();
+        plans.setCalls(plansDTO.getCalls());
+        plans.setPlanSpeed(plansDTO.getPlanSpeed());
+        plans.setPlanDuration(plansDTO.getPlanDuration());
+        plans.setPlanData(plansDTO.getPlanData());
+        return plansRepo.save(plans);
     }
     //UPDATE
-    public Optional<Plans> updatePlan(Long pid,Plans plan) {
+    public Optional<Plans> updatePlan(Long pid,PlansDTO plansDTO) {
         return plansRepo.findById(pid).map(
                 plan1 ->{
-                    plan1.setPlanData(plan.getPlanData());
-                    plan1.setPlanDuration(plan.getPlanDuration());
-                    plan1.setPlanSpeed(plan.getPlanSpeed());
-                    plan1.setCalls(plan.getCalls());
+                    plan1.setPlanData(plansDTO.getPlanData());
+                    plan1.setPlanDuration(plansDTO.getPlanDuration());
+                    plan1.setPlanSpeed(plansDTO.getPlanSpeed());
+                    plan1.setCalls(plansDTO.getCalls());
                     return plansRepo.save(plan1);
                 }
         );
