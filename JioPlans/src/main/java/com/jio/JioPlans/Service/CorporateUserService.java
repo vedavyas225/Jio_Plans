@@ -1,5 +1,6 @@
 package com.jio.JioPlans.Service;
 
+import com.jio.JioPlans.DTO.CUdto;
 import com.jio.JioPlans.Entity.CorporateUser;
 import com.jio.JioPlans.Repository.CorporateUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +22,21 @@ public class CorporateUserService {
     }
 
     // C
-    public CorporateUser createCU(CorporateUser cu){
+    public CorporateUser createCU(CUdto cuDTO){
+        CorporateUser cu = new CorporateUser();
+        cu.setCorporateUserName(cuDTO.getCorporateUserName());
+        cu.setCorporatePlanType(cuDTO.getCorporatePlanType());
+        cu.setCorporateRegisteredNumber(cuDTO.getCorporateRegisteredNumber());
         return cuRepo.save(cu);
     }
 
     //U
-    public Optional<CorporateUser> updateCU(long cid, CorporateUser cu){
+    public Optional<CorporateUser> updateCU(long cid, CUdto cuDTO){
        return cuRepo.findById(cid).map(
                currentCU -> {
-                   currentCU.setCorporateUserName(cu.getCorporateUserName());
-                   currentCU.setCorporateRegisteredNumber(cu.getCorporateRegisteredNumber());
-                   currentCU.setCorporatePlanType(cu.getCorporatePlanType());
+                   currentCU.setCorporateUserName(cuDTO.getCorporateUserName());
+                   currentCU.setCorporateRegisteredNumber(cuDTO.getCorporateRegisteredNumber());
+                   currentCU.setCorporatePlanType(cuDTO.getCorporatePlanType());
                    return cuRepo.save(currentCU);
                }
        );

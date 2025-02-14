@@ -1,5 +1,6 @@
 package com.jio.JioPlans.Controller;
 
+import com.jio.JioPlans.DTO.CUdto;
 import com.jio.JioPlans.Entity.CorporateUser;
 import com.jio.JioPlans.Service.CorporateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,13 @@ public class CorporateUserController {
     }
 
     @PostMapping("/addUser")
-    public CorporateUser saveCUser(@RequestBody CorporateUser cu){
-        return cuService.createCU(cu);
+    public CorporateUser saveCUser(@RequestBody CUdto cuDTO){
+        return cuService.createCU(cuDTO);
     }
 
     @PutMapping("/updateCUser/{cid}")
-    public Optional<CorporateUser> updateCUser(@PathVariable long cid, @RequestBody CorporateUser updatedCU){
-        return cuService.updateCU(cid, updatedCU);
+    public Optional<CorporateUser> updateCUser(@PathVariable long cid, @RequestBody CUdto updatedCUdto){
+        return cuService.updateCU(cid, updatedCUdto);
     }
 
     @DeleteMapping("/deleteCUser/{cid}")

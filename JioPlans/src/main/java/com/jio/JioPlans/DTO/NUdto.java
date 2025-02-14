@@ -1,21 +1,13 @@
-package com.jio.JioPlans.Entity;
+package com.jio.JioPlans.DTO;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-public class NormalUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long normalUserId;
+@NoArgsConstructor
+public class NUdto {
+
+    public long normalUserId;
 
     public long getNormalRegisteredNumber() {
         return normalRegisteredNumber;
@@ -49,8 +41,7 @@ public class NormalUser {
         this.normalPlanType = normalPlanType;
     }
 
-    private long normalRegisteredNumber;
-    private String normalUserName;
-    private String normalPlanType;
-
+    public long normalRegisteredNumber;
+    public String normalUserName;
+    public String normalPlanType;
 }
