@@ -3,6 +3,7 @@ package com.jio.JioPlans.Controller;
 import com.jio.JioPlans.DTO.CUdto;
 import com.jio.JioPlans.Entity.CorporateUser;
 import com.jio.JioPlans.Service.CorporateUserService;
+import com.jio.JioPlans.Service.KafkaProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,21 @@ import java.util.Optional;
 public class CorporateUserController {
 
     @Autowired
+    private final KafkaProducerService kafkaProducerService;
+
+    @Autowired
     public CorporateUserService cuService;
+
+    public CorporateUserController(KafkaProducerService kafkaProducerService) {
+        this.kafkaProducerService = kafkaProducerService;
+    }
+
+    @PostMapping("/selectPlan")
+    public String selectPlan(@RequestParam String username, @RequestParam String planName){
+        String message = "Corporate User " + username + "selected plan "+planName;
+        kafkaProducerService.sendMessage("plans-topic",message);
+        return "Plan selection published";
+    }
 
     @GetMapping("/testing")
     public String testingOutput(){
